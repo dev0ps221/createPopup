@@ -11,8 +11,8 @@ class Popup{
         this.popupElem.appendChild(this.contentElem)
     }
     buildPopupNode(){
-        this.nodeElem = document.createElement('section')
-        this.nodeElem.classList.add('cp-popup')
+        this.popupElem = document.createElement('section')
+        this.popupElem.classList.add('cp-popup')
         this.buildPopupHeadNode()
         this.buildPopupContentNode()
     }
@@ -36,7 +36,28 @@ class Popup{
         this.contentElem = document.createElement('section')
         this.contentElem.classList.add('cp-content')
     }
-
+    setContent(content){
+        this.contentElem.innerHTML = content
+    }
+    show(){
+        this.popupElem.classList.add('active')
+    }
+    hide(){
+        this.popupElem.classList.remove('active')
+    }
+    isVisible(){
+        return this.popupElem.classList.contains('visible')
+    }
+    isNotVisible(){
+        return !this.isVisible()
+    }
+    switchVisibility(){
+        if(this.isVisible()){
+            this.hide()
+        }else{
+            this.show()
+        }
+    }
     constructor(title,parent){
         //construct a new Popup instance
         this.title = title
