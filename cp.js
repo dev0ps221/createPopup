@@ -1,16 +1,24 @@
 class Popup{
-
+    popupElem = null
+    headElem = null
+    titleElem = null
+    contentElem = null
+    closeElem = null
     buildPopupNode(){
-
+        this.nodeElem = document.createElement('section')
+        this.nodeElem.classList.add('cp-popup')
+        this.buildPopupTitleNode()
     }
     buildPopupTitleNode(){
-
+        this.titleElem = document.createElement('h2')
+        this.titleElem.classList.add('cp-title')
+        this.titleElem.innerHTML = this.title
     }
     buildPopupHeadNode(){
 
     }
     buildPopupCloseNode(){
-        
+
     }
     buildPopupContentNode(){
         
