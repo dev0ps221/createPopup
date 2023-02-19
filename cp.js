@@ -135,6 +135,28 @@ class CpPopup{
             ]
         );
     }
+
+    defaultHeadStyle(){
+        this.headerStyle([
+            ["--cp-head-bg","#333"],
+            ["--cp-head-fg","#fff"],
+            ["display"," flex"],
+            ["justify-content"," space-between"],
+            ["background"," var(--cp-head-bg)"],
+            ["color","var(--cp-head-fg)"]
+        ])
+        
+        const childrenCommonStyle = [
+            ["display"," flex"],
+            ["flex-direction"," column"],
+            ["justify-content"," center"],
+            ["padding-left"," .5%"],
+            ["padding-right"," .5%"]
+        ];
+        this.titleStyle(childrenCommonStyle)
+        this.closeStyle(childrenCommonStyle)
+    }
+
     defaultStyle(){
         //setup the default popup style
 
@@ -142,7 +164,8 @@ class CpPopup{
         //the popup
         this.defaultPopupStyle()
 
-
+        //the header
+        this.defaultHeadStyle()
 
 
 
