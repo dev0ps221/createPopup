@@ -47,6 +47,16 @@ class CpPopup{
         this.contentElem = document.createElement('section')
         this.contentElem.classList.add('cp-content')
     }
+    appendContent(elem){
+        //append html element to the popup content node
+        this.contentElem.appendChild(elem)
+    }
+    appendToTarget(selector,elem){
+        const target = this.popupElem.querySelector(selector)
+        if(target){
+            target.appendChild(elem)
+        }
+    }
     setContent(content){
         //update the innerHTML content of the popup content node (can be dangerous, be cautious when loading data from ajax requests and with dynamic content injection)
         this.contentElem.innerHTML = content
@@ -89,7 +99,6 @@ class CpPopup{
             console.log('error when remove popup from the children of '+this.parent)
         }
     }
-    
     destroy(){
         //get rid of everything about this
         this.unhookPopup()
@@ -157,6 +166,24 @@ class CpPopup{
         this.closeStyle(childrenCommonStyle)
     }
 
+    defaultTitleStyle(){
+        this.titleStyle("width","96%")
+    }
+
+    defaultCloseButtonStyle(){
+        this.closeStyle(
+            [
+                ["--cp-close-bg","#d22"],
+                ["--cp-close-fg","#fff"],
+                ["background"," var(--cp-close-bg)"],
+                ["color"," var(--cp-close-fg)"],
+                ["text-align"," center"],
+                ["cursor"," pointer"],
+                ["width","2%"]
+            ]
+        )
+    }
+
     defaultStyle(){
         //setup the default popup style
 
@@ -167,6 +194,11 @@ class CpPopup{
         //the header
         this.defaultHeadStyle()
 
+        //the title
+        this.defaultTitleStyle()
+
+        //the close button
+        this.defaultCloseButtonStyle()
 
 
     }
@@ -258,10 +290,20 @@ class CpPopup{
         }
 
     }
-    targettedStyle(selector,property,value){
+    targettedStyle(selector,...pairs){
+        //customize the popup targetted element style
+        
         const target  = this.popupElem.querySelector(selector)
-        if(target){
-            target.style.setProperty(property,value)
+            if(target){if(Array.isArray(pairs[0])){
+                pairs[0].forEach(
+                    ([property,value])=>{
+                        target.style.setProperty(property,value)
+                    }
+                )
+            }else{
+                const [property,value] = pairs
+                target.style.setProperty(property,value)
+            }
         }
     }
 
