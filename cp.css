@@ -1,29 +1,3 @@
-.cp-popup{
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100vw;
-    min-height: 100vh;
-    z-index: 10;
-    display: none;
-}
-.cp-popup.visible{
-    display: grid;
-    grid-template-rows: .5fr 11.5fr ;
-}
-.cp-head{
-    --cp-head-bg:#333;
-    --cp-head-fg:#fff;
-    display: flex;
-    justify-content: space-between;
-    background: var(--cp-head-bg);
-    color:var(--cp-head-fg);
-}
 .cp-head > *{
     display: flex;
     flex-direction: column;

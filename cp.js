@@ -5,12 +5,14 @@ class CpPopup{
     contentElem = null
     closeElem = null
     setupNodes(){
+        //append each node of the popup to it's parent
         this.headElem.appendChild(this.titleElem)
         this.headElem.appendChild(this.closeElem)
         this.popupElem.appendChild(this.headElem)
         this.popupElem.appendChild(this.contentElem)
     }
     buildPopupNode(){
+        //build the popup node, and its child nodes
         this.popupElem = document.createElement('section')
         this.popupElem.classList.add('cp-popup')
         this.buildPopupHeadNode()
@@ -52,10 +54,12 @@ class CpPopup{
     show(){
         //show the popup
         this.popupElem.classList.add('visible')
+        this.popupStyle('display','grid')
     }
     hide(){
         //hide the popup
         this.popupElem.classList.remove('visible')
+        this.popupStyle('display','none')
     }
     isVisible(){
         //check if the popup is visible
@@ -111,17 +115,125 @@ class CpPopup{
     }
 
     //style and customisation
+
+    defaultPopupStyle(){
+        this.popupStyle(
+            [
+                ['position',' absolute'],
+                ['top',' 0'],
+                ['left',' 0'],
+                ['bottom',' 0'],
+                ['right',' 0'],
+                ['margin',' 0'],
+                ['padding',' 0'],
+                ['box-sizing','border-box'],
+                ['width',' 100vw'],
+                ['min-height',' 100vh'],
+                ['z-index',' 10'],
+                ['display',' none'],
+                ['grid-template-rows','.5fr 11.5fr']
+            ]
+        );
+    }
+    defaultStyle(){
+        //setup the default popup style
+
+
+        //the popup
+        this.defaultPopupStyle()
+
+
+
+
+
+    }
+
     changeHeaderBg(color){
+        //change the popup header background color
         this.headElem.style.setProperty('--cp-head-bg',color)
     }
     changeHeaderFg(color){
+        //change the popup header text color
         this.headElem.style.setProperty('--cp-head-fg',color)
     }
     changeCloseButtonBg(color){
+        //change the popup close button background color
         this.closeElem.style.setProperty('--cp-close-bg',color)
     }
     changeCloseButtonFg(color){
+        //change the popup close button text color
         this.closeElem.style.setProperty('--cp-close-fg',color)
+    }
+
+    popupStyle(...pairs){
+        //customize the popup header style
+        if(Array.isArray(pairs[0])){
+            pairs[0].forEach(
+                ([property,value])=>{
+                    this.popupElem.style.setProperty(property,value)
+                }
+            )
+        }else{
+            const [property,value] = pairs
+            this.popupElem.style.setProperty(property,value)
+        }
+
+    }
+    headerStyle(...pairs){
+        //customize the popup header style
+        if(Array.isArray(pairs[0])){
+            pairs[0].forEach(
+                ([property,value])=>{
+                    this.headElem.style.setProperty(property,value)
+                }
+            )
+        }else{
+            const [property,value] = pairs
+            this.headElem.style.setProperty(property,value)
+        }
+
+    }
+    titleStyle(...pairs){
+        //customize the popup title style
+        if(Array.isArray(pairs[0])){
+            pairs[0].forEach(
+                ([property,value])=>{
+                    this.titleElem.style.setProperty(property,value)
+                }
+            )
+        }else{
+            const [property,value] = pairs
+            this.titleElem.style.setProperty(property,value)
+        }
+
+    }
+    contentStyle(...pairs){
+        //customize the popup content style
+        if(Array.isArray(pairs[0])){
+            pairs[0].forEach(
+                ([property,value])=>{
+                    this.contentElem.style.setProperty(property,value)
+                }
+            )
+        }else{
+            const [property,value] = pairs
+            this.contentElem.style.setProperty(property,value)
+        }
+
+    }
+    closeStyle(...pairs){
+        //customize the popup close button style
+        if(Array.isArray(pairs[0])){
+            pairs[0].forEach(
+                ([property,value])=>{
+                    this.closeElem.style.setProperty(property,value)
+                }
+            )
+        }else{
+            const [property,value] = pairs
+            this.closeElem.style.setProperty(property,value)
+        }
+
     }
 
     constructor(title,parent){
@@ -131,6 +243,7 @@ class CpPopup{
         this.buildPopupNode()
         this.setupNodes()
         this.appendPopup()
+        this.defaultStyle()
     }
 }
 window.createPopup = (title,parent)=>{
