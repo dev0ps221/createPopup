@@ -1,0 +1,19 @@
+.cp-head > *{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: .5%; 
+    padding-right: .5%; 
+}
+.cp-title{
+    width: 96%;
+}
+.cp-close{
+    --cp-close-bg:#d22;
+    --cp-close-fg:#fff;
+    background: var(--cp-close-bg);
+    color: var(--cp-close-fg);
+    text-align: center;
+    cursor: pointer;
+    width:2%;
+}
