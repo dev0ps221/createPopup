@@ -258,6 +258,12 @@ class CpPopup{
         }
 
     }
+    targettedStyle(selector,property,value){
+        const target  = this.popupElem.querySelector(selector)
+        if(target){
+            target.style.setProperty(property,value)
+        }
+    }
 
     constructor(title,parent){
         //construct a new Popup instance
